@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'Hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+    console.log("This is a list of console logs");
+
+    // Interpolated
+    const str = 'come'
+    console.log("Now who is going to %s here??", str);
+
+    // Styled
+    console.log("%c These are some really nice styles!!", "font-style: italic; font-size: 15px; color: #c0ffee");
+
+    // warning!
+    console.warn("Did you know you're doing something wrong?");
+
+    // Error :|
+    console.error("Now you've gone and done it huh....How are you going to fix it now?!!");
+
+    // Info
+    console.info("Here is some info about this mess");
+
+    // Testing
+    console.assert("hello".includes('h'), "Is this really true? NO!!"); //If assertion fails, then the string is passed. Otherwise nothing is displayed
+
+    // clearing
+    // setTimeout(() => console.clear(), 0000);
+
+    // Viewing DOM Elements
+    const p = document.querySelector('p');
+    console.log(p); //shows the element itself how it looks in the code
+    console.dir(p); //shows the element details like classList, children nodes, styles applied, etc.
+    console.clear();
+
+    // Grouping together groups console.logs together. If there is an array that is iterated and has console logs for every element, then it groups them
+    dogs.forEach(dog => {
+      //while console.group() makes a section/group with the name provided, console.groupCollapsed() makes the 
+      //group dropdown collapsed by default
+
+      console.groupCollapsed(`${dog.name}`); 
+      console.log(`This is ${dog.name}.`);
+      console.log(`He is ${dog.age * 7} dog years old.`);
+      console.groupEnd(`${dog.name}`);
+    })
+    // counting
+    console.count('Hello');
+    console.count('Hello');
+    console.count("World!");
+    console.count('Hello');
+    console.count('Hello');
+    console.count("World!");
+    console.count('Hello');
+    console.count('Hello');
+    console.count("World!");
+    console.count('Hello');
+    console.count("World!");
+    console.count('Hello');
+    //simply displays a counter beside the string indicating how many times it has been called
+
+    // timing
+    console.time("Saito no Baka!"); //starts a timer
+    //async operation
+    fetch('https:/api.github.com/users/NAPOLEON039')
+    .then(data => data.json())
+    .then(resp => {
+      console.timeEnd("Saito no Baka!"); //timer stops and displays time taken to complete async operation
+      console.log(resp);
+    })
+
+    console.table(dogs); //takes an array and displays it in a neat table format.
+
+  </script>
+</body>
+</html>
